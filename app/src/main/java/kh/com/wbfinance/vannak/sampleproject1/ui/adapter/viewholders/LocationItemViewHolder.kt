@@ -3,10 +3,10 @@ package kh.com.wbfinance.vannak.sampleproject1.ui.adapter.viewholders
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import kh.com.wbfinance.vannak.sampleproject1.R
+import kh.com.wbfinance.vannak.sampleproject1.data.helper.CaseType
+import kh.com.wbfinance.vannak.sampleproject1.data.helper.CaseTypes
 import kh.com.wbfinance.vannak.sampleproject1.databinding.ItemLocationBinding
 import kh.com.wbfinance.vannak.sampleproject1.ui.base.BaseViewItem
-import kh.com.wbfinance.vannak.sampleproject1.util.CaseType
-import kh.com.wbfinance.vannak.sampleproject1.util.CaseTypes
 import kh.com.wbfinance.vannak.sampleproject1.util.NumberUtils
 import kh.com.wbfinance.vannak.sampleproject1.util.ext.visible
 import me.ibrahimyilmaz.kiel.core.RecyclerViewHolder

@@ -17,6 +17,7 @@ import me.ibrahimyilmaz.kiel.core.RecyclerViewHolder
 
 data class OverviewItem(
     val confirmed: Int = 0,
+    val active: Int = 0,
     val recovered: Int = 0,
     val deaths: Int = 0
 ) : BaseViewItem
@@ -40,12 +41,12 @@ class OverviewItemViewHolder(itemView: View) : RecyclerViewHolder<OverviewItem>(
 
     override fun bind(position: Int, item: OverviewItem) {
         super.bind(position, item)
-        if (item.confirmed == confirmed && item.recovered == recovered && item.deaths == deaths) return
+        if (item.confirmed == confirmed && item.recovered == recovered && item.deaths == deaths && item.active == active) return
 
         confirmed = item.confirmed
         recovered = item.recovered
         deaths = item.deaths
-        active = confirmed.minus(recovered).minus(deaths)
+        active = item.active
 
         with(binding) {
             startNumberChangeAnimator(active, txtActive)

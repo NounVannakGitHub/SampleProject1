@@ -3,9 +3,9 @@ package kh.com.wbfinance.vannak.sampleproject1.ui.adapter.viewholders
 import android.view.View
 import androidx.core.content.ContextCompat
 import kh.com.wbfinance.vannak.sampleproject1.R
+import kh.com.wbfinance.vannak.sampleproject1.data.helper.IncrementStatus
 import kh.com.wbfinance.vannak.sampleproject1.databinding.ItemDailyBinding
 import kh.com.wbfinance.vannak.sampleproject1.ui.base.BaseViewItem
-import kh.com.wbfinance.vannak.sampleproject1.util.IncrementStatus
 import kh.com.wbfinance.vannak.sampleproject1.util.NumberUtils
 import me.ibrahimyilmaz.kiel.core.RecyclerViewHolder
 

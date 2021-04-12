@@ -1,24 +1,24 @@
 package kh.com.wbfinance.vannak.sampleproject1.ui.overview
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import io.reactivex.Observable
-import io.reactivex.functions.Function3
+import io.reactivex.functions.BiFunction
+import io.reactivex.functions.Function4
 import kh.com.wbfinance.vannak.sampleproject1.R
-import kh.com.wbfinance.vannak.sampleproject1.data.mapper.CovidDailyDataMapper
+import kh.com.wbfinance.vannak.sampleproject1.data.base.BaseResult
+import kh.com.wbfinance.vannak.sampleproject1.data.helper.Constant
+import kh.com.wbfinance.vannak.sampleproject1.data.mapper.AseanCountryDataMapper
 import kh.com.wbfinance.vannak.sampleproject1.data.mapper.CovidOverviewDataMapper
-import kh.com.wbfinance.vannak.sampleproject1.data.mapper.CovidPinnedDataMapper
-import kh.com.wbfinance.vannak.sampleproject1.data.model.CovidDaily
-import kh.com.wbfinance.vannak.sampleproject1.data.model.CovidDetail
-import kh.com.wbfinance.vannak.sampleproject1.data.model.CovidOverview
-import kh.com.wbfinance.vannak.sampleproject1.data.repository.Result;
-import kh.com.wbfinance.vannak.sampleproject1.data.repository.Repository;
+import kh.com.wbfinance.vannak.sampleproject1.model.dao.Country
+import kh.com.wbfinance.vannak.sampleproject1.model.dao.CovidOverview
+import kh.com.wbfinance.vannak.sampleproject1.model.repo.Repository
 import kh.com.wbfinance.vannak.sampleproject1.ui.adapter.viewholders.ErrorStateItem
 import kh.com.wbfinance.vannak.sampleproject1.ui.adapter.viewholders.LoadingStateItem
 import kh.com.wbfinance.vannak.sampleproject1.ui.adapter.viewholders.TextItem
 import kh.com.wbfinance.vannak.sampleproject1.ui.base.BaseViewItem
 import kh.com.wbfinance.vannak.sampleproject1.ui.base.BaseViewModel
-import kh.com.wbfinance.vannak.sampleproject1.util.Constant
 import kh.com.wbfinance.vannak.sampleproject1.util.SingleLiveEvent
 import kh.com.wbfinance.vannak.sampleproject1.util.ext.addTo
 import kh.com.wbfinance.vannak.sampleproject1.util.rx.SchedulerProvider
@@ -61,20 +61,17 @@ class DashboardViewModel(
         val overviewObservable = appRepository.overview()
             .observeOn(schedulerProvider.io()) //all stream below will be manage on io thread
 
-        val dailyObservable = appRepository.daily()
-            .observeOn(schedulerProvider.io())
-
-        val pinnedObservable = appRepository.pinnedRegion()
+        val aseanObservable = appRepository.aseanCountries()
             .observeOn(schedulerProvider.io())
 
         Observable.combineLatest(
             overviewObservable,
-            dailyObservable,
-            pinnedObservable,
-            Function3<Result<CovidOverview>,
-                    Result<List<CovidDaily>>,
-                    Result<CovidDetail>,
-                    Pair<List<BaseViewItem>, Throwable?>> { overview, daily, pinned ->
+            aseanObservable,
+            BiFunction<
+                    BaseResult<CovidOverview>,
+                    BaseResult<List<Country>>,
+                    Pair<List<BaseViewItem>, Throwable?>> {
+                overview, asean ->
 
                 val items: MutableList<BaseViewItem> = mutableListOf()
                 var currentThrowable: Throwable? = null
@@ -84,26 +81,19 @@ class DashboardViewModel(
                     error?.let { currentThrowable = it }
                 }
 
-                with(pinned){
-                    CovidPinnedDataMapper.transform(data)?.let {
-                        items.add(it)
+                /*
+                * Asean Zone Covid-19 data
+                * */
+                items.add(TextItem(R.string.asean_zone))
+
+                with(asean){
+                    AseanCountryDataMapper.transform(data).let {
+                        items.addAll(it)
                     }
                     error?.let { currentThrowable = it }
                 }
 
-                items.add(TextItem(R.string.per_country))
-                items.addAll(appRepository.getPerCountryItem())
-
-                with(daily){
-                    val dailies = CovidDailyDataMapper.transform(data)
-                    if(dailies.isNotEmpty()) {
-                        items.add(TextItem(R.string.daily_updates, R.string.show_graph))
-                        items.addAll(dailies)
-                    }
-                    error?.let { currentThrowable = it }
-                }
-
-                return@Function3 items.toList() to currentThrowable
+                return@BiFunction items.toList() to currentThrowable
             })
             .observeOn(schedulerProvider.ui()) //go back to ui thread
             .subscribe({ (result, throwable) ->

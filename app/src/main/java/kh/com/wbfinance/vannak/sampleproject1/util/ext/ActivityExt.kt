@@ -1,6 +1,5 @@
 package kh.com.wbfinance.vannak.sampleproject1.util.ext
 
-import android.app.Activity
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

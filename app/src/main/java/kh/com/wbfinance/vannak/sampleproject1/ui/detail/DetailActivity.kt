@@ -10,13 +10,13 @@ import android.view.WindowManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.jakewharton.rxbinding.widget.RxTextView
 import kh.com.wbfinance.vannak.sampleproject1.R
+import kh.com.wbfinance.vannak.sampleproject1.data.helper.CaseType
 import kh.com.wbfinance.vannak.sampleproject1.databinding.ActivityDetailBinding
 import kh.com.wbfinance.vannak.sampleproject1.ui.adapter.createAdapter
 import kh.com.wbfinance.vannak.sampleproject1.ui.adapter.viewholders.LocationItem
 import kh.com.wbfinance.vannak.sampleproject1.ui.base.BaseActivity
 import kh.com.wbfinance.vannak.sampleproject1.ui.base.BaseViewItem
 import kh.com.wbfinance.vannak.sampleproject1.ui.maps.VisualMapsFragment
-import kh.com.wbfinance.vannak.sampleproject1.util.CaseType
 import kh.com.wbfinance.vannak.sampleproject1.util.ext.observe
 import org.koin.android.viewmodel.ext.android.viewModel
 import rx.android.schedulers.AndroidSchedulers

@@ -60,14 +60,15 @@ android {
             resValue "string", "app_alias_name", "Dev " + appName
             applicationIdSuffix ".dev"
             dimension "mode"
-            buildConfigField "String", "BASE_URL", "\"https://api.somphearak.com/\""
+            buildConfigField "String", "BASE_URL", "\"https://corona.lmao.ninja/\""
 
         }
 
         production {
             resValue "string", "app_alias_name", appName
             dimension "mode"
-            buildConfigField "String", "BASE_URL", "\"https://api.somphearak.com/\""
+//            buildConfigField "String", "BASE_URL", "\"https://covid19.mathdro.id/\""
+            buildConfigField "String", "BASE_URL", "\"https://corona.lmao.ninja/\""
         }
     }
 

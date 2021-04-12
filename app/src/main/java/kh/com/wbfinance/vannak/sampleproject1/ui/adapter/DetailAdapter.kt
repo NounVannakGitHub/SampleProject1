@@ -5,16 +5,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kh.com.wbfinance.vannak.sampleproject1.R
-import kh.com.wbfinance.vannak.sampleproject1.data.model.CovidDetail
+import kh.com.wbfinance.vannak.sampleproject1.data.helper.CaseType
 import kh.com.wbfinance.vannak.sampleproject1.databinding.ItemLocationBinding
-import kh.com.wbfinance.vannak.sampleproject1.util.CaseType
+import kh.com.wbfinance.vannak.sampleproject1.model.dao.CovidDetail
 import kh.com.wbfinance.vannak.sampleproject1.util.NumberUtils
 import kh.com.wbfinance.vannak.sampleproject1.util.ext.visible
 
 class DetailAdapter(
-    val caseType: Int,
-    val clicked: (data: CovidDetail) -> Unit,
-    val longClicked: (data: CovidDetail) -> Unit
+        val caseType: Int,
+        val clicked: (data: CovidDetail) -> Unit,
+        val longClicked: (data: CovidDetail) -> Unit
 ) : RecyclerView.Adapter<DetailAdapter.ViewHolder>() {
 
     private val items = mutableListOf<CovidDetail>()

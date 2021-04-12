@@ -2,14 +2,14 @@ package kh.com.wbfinance.vannak.sampleproject1.ui.detail
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import kh.com.wbfinance.vannak.sampleproject1.data.helper.CaseType
+import kh.com.wbfinance.vannak.sampleproject1.data.helper.Constant
 import kh.com.wbfinance.vannak.sampleproject1.data.mapper.CovidDetailDataMapper
-import kh.com.wbfinance.vannak.sampleproject1.data.model.CovidDetail
-import kh.com.wbfinance.vannak.sampleproject1.data.repository.Repository
+import kh.com.wbfinance.vannak.sampleproject1.model.dao.Country
+import kh.com.wbfinance.vannak.sampleproject1.model.repo.Repository
 import kh.com.wbfinance.vannak.sampleproject1.ui.adapter.viewholders.LoadingStateItem
 import kh.com.wbfinance.vannak.sampleproject1.ui.base.BaseViewItem
 import kh.com.wbfinance.vannak.sampleproject1.ui.base.BaseViewModel
-import kh.com.wbfinance.vannak.sampleproject1.util.CaseType
-import kh.com.wbfinance.vannak.sampleproject1.util.Constant
 import kh.com.wbfinance.vannak.sampleproject1.util.SingleLiveEvent
 import kh.com.wbfinance.vannak.sampleproject1.util.ext.addTo
 import kh.com.wbfinance.vannak.sampleproject1.util.rx.SchedulerProvider
@@ -19,7 +19,7 @@ class DetailViewModel(
     private val schedulerProvider: SchedulerProvider
 ) : BaseViewModel() {
 
-    private var detailList = listOf<CovidDetail>()
+    private var detailList = listOf<Country>()
     private var caseType: Int = CaseType.FULL
     private var searchKey: String = ""
 

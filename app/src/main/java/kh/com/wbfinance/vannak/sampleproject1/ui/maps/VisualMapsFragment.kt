@@ -16,11 +16,11 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
 import kh.com.wbfinance.vannak.sampleproject1.R
+import kh.com.wbfinance.vannak.sampleproject1.data.helper.CaseType
 import kh.com.wbfinance.vannak.sampleproject1.ui.adapter.viewholders.LocationItem
 import kh.com.wbfinance.vannak.sampleproject1.ui.base.BaseFragment
 import kh.com.wbfinance.vannak.sampleproject1.ui.base.BaseViewItem
 import kh.com.wbfinance.vannak.sampleproject1.ui.detail.DetailViewModel
-import kh.com.wbfinance.vannak.sampleproject1.util.CaseType
 import kh.com.wbfinance.vannak.sampleproject1.util.ext.observe
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 import kotlin.math.pow

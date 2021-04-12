@@ -22,8 +22,8 @@ import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import kh.com.wbfinance.vannak.sampleproject1.R
-import kh.com.wbfinance.vannak.sampleproject1.util.Constant
-import kh.com.wbfinance.vannak.sampleproject1.widget.TopSnackbar
+import kh.com.wbfinance.vannak.sampleproject1.data.helper.Constant
+import kh.com.wbfinance.vannak.sampleproject1.ui.widget.snackbar.TopSnackbar
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 
 abstract class BaseActivity: AppCompatActivity() {

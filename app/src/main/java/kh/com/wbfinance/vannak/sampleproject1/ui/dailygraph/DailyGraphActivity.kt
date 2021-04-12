@@ -2,26 +2,25 @@ package kh.com.wbfinance.vannak.sampleproject1.ui.dailygraph
 
 import android.content.Context
 import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import kh.com.wbfinance.vannak.sampleproject1.R
-import kh.com.wbfinance.vannak.sampleproject1.databinding.DailyGraphActivityBinding
+import kh.com.wbfinance.vannak.sampleproject1.databinding.ActivityDailyGraphBinding
 import kh.com.wbfinance.vannak.sampleproject1.ui.base.BaseActivity
-import kh.com.wbfinance.vannak.sampleproject1.ui.dailygraph.ui.main.DailyGraphFragment
-import kh.com.wbfinance.vannak.sampleproject1.ui.dailygraph.ui.main.DailyGraphViewModel
 import kh.com.wbfinance.vannak.sampleproject1.util.ext.observe
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class DailyGraphActivity : BaseActivity(), DailyGraphFragment.DailyListener {
 
     private val viewModel by viewModel<DailyGraphViewModel>()
-    private lateinit var binding: DailyGraphActivityBinding
+    private lateinit var binding: ActivityDailyGraphBinding
 
     private var singlePane: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DailyGraphActivityBinding.inflate(layoutInflater)
+        binding = ActivityDailyGraphBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initView()
 

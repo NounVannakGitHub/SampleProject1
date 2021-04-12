@@ -8,6 +8,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import kh.com.wbfinance.vannak.sampleproject1.R
+import kh.com.wbfinance.vannak.sampleproject1.data.helper.CaseType
 import kh.com.wbfinance.vannak.sampleproject1.databinding.ActivityDashboardBinding
 import kh.com.wbfinance.vannak.sampleproject1.ui.adapter.createAdapter
 import kh.com.wbfinance.vannak.sampleproject1.ui.adapter.viewholders.*
@@ -15,8 +16,7 @@ import kh.com.wbfinance.vannak.sampleproject1.ui.base.BaseActivity
 import kh.com.wbfinance.vannak.sampleproject1.ui.base.BaseViewItem
 import kh.com.wbfinance.vannak.sampleproject1.ui.dailygraph.DailyGraphActivity
 import kh.com.wbfinance.vannak.sampleproject1.ui.detail.DetailActivity
-import kh.com.wbfinance.vannak.sampleproject1.ui.percountry.indonesia.CountryIndonesiaActivity
-import kh.com.wbfinance.vannak.sampleproject1.util.CaseType
+import kh.com.wbfinance.vannak.sampleproject1.ui.percountry.PerCountryActivity
 import kh.com.wbfinance.vannak.sampleproject1.util.ext.observe
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -86,12 +86,10 @@ class DashboardActivity : BaseActivity() {
             is DailyItem -> {
                 Log.e("DailyItem", "DailyItem Click: ${viewItem.deltaConfirmed}")
             }
-            is PerCountryItem -> {
+            is CountryItem -> {
                 /*Assuming every local country data has different API, so we provide dedicated activity,
                 * But with reusable components*/
-                when (viewItem.id) {
-                    PerCountryItem.ID -> CountryIndonesiaActivity.startActivity(this)
-                }
+                PerCountryActivity.startActivity(this,viewItem.country)
             }
             is TextItem -> {
                 DailyGraphActivity.startActivity(this)

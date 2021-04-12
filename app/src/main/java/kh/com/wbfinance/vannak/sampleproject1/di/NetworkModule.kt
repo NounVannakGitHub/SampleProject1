@@ -2,9 +2,9 @@ package kh.com.wbfinance.vannak.sampleproject1.di
 
 import io.reactivex.schedulers.Schedulers
 import kh.com.wbfinance.vannak.sampleproject1.BuildConfig
-import kh.com.wbfinance.vannak.sampleproject1.data.source.remote.Api
-import kh.com.wbfinance.vannak.sampleproject1.data.source.remote.AppRemoteSource
-import kh.com.wbfinance.vannak.sampleproject1.util.Constant
+import kh.com.wbfinance.vannak.sampleproject1.data.helper.Constant
+import kh.com.wbfinance.vannak.sampleproject1.model.api.CovidApi
+import kh.com.wbfinance.vannak.sampleproject1.model.datasource.CovidDataSource
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
@@ -27,7 +27,7 @@ val networkModule = module {
     }
 
     single {
-        AppRemoteSource(get())
+        CovidDataSource(get())
     }
 
     single {
@@ -40,6 +40,6 @@ val networkModule = module {
     }
 
     single {
-        get<Retrofit>().create(Api::class.java)
+        get<Retrofit>().create(CovidApi::class.java)
     }
 }

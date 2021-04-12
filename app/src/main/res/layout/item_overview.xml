@@ -102,6 +102,7 @@
                     android:textAppearance="@style/TextAppearance.App.TextView.H5.White.Bold"
                     android:textColor="@color/color_active"
                     android:textSize="@dimen/text_14"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/txt_active" />
 
@@ -179,7 +180,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_x2"
-            android:text="@string/tap_on_statistic"
             android:textColor="@color/cool_grey"
             android:textSize="@dimen/text_14"
             app:layout_constraintBottom_toBottomOf="parent"

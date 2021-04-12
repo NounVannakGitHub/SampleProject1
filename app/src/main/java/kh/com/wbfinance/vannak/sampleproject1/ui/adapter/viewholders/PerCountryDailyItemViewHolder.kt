@@ -16,7 +16,6 @@ data class PerCountryDailyItem(
     val totalRecovered: Int = 0,
     val totalConfirmed: Int = 0,
     val date: Long = 0,
-    val day: Int = 0,
     @StringRes val info: Int
 ) : BaseViewItem
 
@@ -28,10 +27,7 @@ class PerCountryDailyItemViewHolder(itemView: View) :
         super.bind(position, item)
         with(binding) {
             txtInformation.text = itemView.context.getString(item.info)
-            txtDate.text = "${NumberUtils.formatShortDate(item.date)} ${getString(
-                R.string.day_on,
-                item.day.toString()
-            )}"
+            txtDate.text = NumberUtils.formatTime(item.date)
             txtConfirmed.text = getString(
                 R.string.confirmed_case_count,
                 NumberUtils.numberFormat(item.totalConfirmed)
@@ -48,7 +44,6 @@ class PerCountryDailyItemViewHolder(itemView: View) :
                 R.string.new_case_case_count,
                 NumberUtils.numberFormat(item.confirmed)
             )
-
         }
     }
 }
