@@ -47,6 +47,9 @@
     <string name="update_url" translatable="false">https://drive.google.com/open?id=1MaO9mIKWCFWSK2lFtEfKge1z8XDesi8n</string>
     <string name="day_on">(Day #%1$s)</string>
 
+    <!-- API KEY -->
+    <string name="MAP_API_KEY" translatable="false">AIzaSyALi3weKClqYoXBQz4OalJXfd_uFTDWNw4</string>
+
     <!-- Country Name -->
     <!-- Asean Country-->
     <string name="asean_zone">Asean Zone</string>
@@ -69,7 +72,6 @@
     <string name="update_widget_start">Updating widget data …</string>
     <string name="update_widget_success">Updating widget data successful</string>
     <string name="update_widget_fail">Updating widget data failed</string>
-
 
     <string name="total_chart_info">Total Line Chart shows the total number of confirmed and recovered case over period of time</string>
     <string name="delta_chart_info">Delta Line Chart shows the increment of confirmed and recovered case over period of time</string>

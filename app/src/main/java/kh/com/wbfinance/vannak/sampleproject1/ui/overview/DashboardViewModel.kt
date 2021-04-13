@@ -5,12 +5,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import io.reactivex.Observable
 import io.reactivex.functions.BiFunction
+import io.reactivex.functions.Function3
 import io.reactivex.functions.Function4
 import kh.com.wbfinance.vannak.sampleproject1.R
 import kh.com.wbfinance.vannak.sampleproject1.data.base.BaseResult
 import kh.com.wbfinance.vannak.sampleproject1.data.helper.Constant
 import kh.com.wbfinance.vannak.sampleproject1.data.mapper.AseanCountryDataMapper
 import kh.com.wbfinance.vannak.sampleproject1.data.mapper.CovidOverviewDataMapper
+import kh.com.wbfinance.vannak.sampleproject1.model.dao.Continent
 import kh.com.wbfinance.vannak.sampleproject1.model.dao.Country
 import kh.com.wbfinance.vannak.sampleproject1.model.dao.CovidOverview
 import kh.com.wbfinance.vannak.sampleproject1.model.repo.Repository
@@ -61,17 +63,22 @@ class DashboardViewModel(
         val overviewObservable = appRepository.overview()
             .observeOn(schedulerProvider.io()) //all stream below will be manage on io thread
 
+        val covidSpreadMetricByContinent = appRepository.allContinents()
+            .observeOn(schedulerProvider.io())
+
         val aseanObservable = appRepository.aseanCountries()
             .observeOn(schedulerProvider.io())
 
         Observable.combineLatest(
             overviewObservable,
+            covidSpreadMetricByContinent,
             aseanObservable,
-            BiFunction<
+            Function3<
                     BaseResult<CovidOverview>,
+                    BaseResult<List<Continent>>,
                     BaseResult<List<Country>>,
                     Pair<List<BaseViewItem>, Throwable?>> {
-                overview, asean ->
+                overview, continents, asean ->
 
                 val items: MutableList<BaseViewItem> = mutableListOf()
                 var currentThrowable: Throwable? = null
@@ -80,6 +87,14 @@ class DashboardViewModel(
                     items.add(CovidOverviewDataMapper.transform(data))
                     error?.let { currentThrowable = it }
                 }
+
+                /*
+                * All Continents
+                * */
+
+                /*
+                * Favorite Country
+                * */
 
                 /*
                 * Asean Zone Covid-19 data
@@ -93,7 +108,7 @@ class DashboardViewModel(
                     error?.let { currentThrowable = it }
                 }
 
-                return@BiFunction items.toList() to currentThrowable
+                return@Function3 items.toList() to currentThrowable
             })
             .observeOn(schedulerProvider.ui()) //go back to ui thread
             .subscribe({ (result, throwable) ->

@@ -88,6 +88,7 @@ open class CovidRepo constructor(
     }
 
     override fun removePinnedRegion(): Completable {
+        // TODO: remove pinned region from cache data
         return Completable.create {
 //            if (cache.setCountry(Country(country = "no")))
                 it.onComplete()
@@ -97,31 +98,37 @@ open class CovidRepo constructor(
 
     override fun getCachePinnedRegion(): Country? = cache.getCountry("")
     override fun getCacheDaily(): List<CovidDaily> {
+        // TODO: get cache daily
         return listOf()
     }
 
     override fun daily(): Observable<BaseResult<List<CovidDaily>>> {
+        // TODO: daily case
         return Observable.empty()
     }
 
     override fun country(name: String): Observable<Country> {
+        // TODO: cases per country
         return Observable.empty()
     }
 
     override fun recovered(): Observable<List<Country>> {
+        // TODO: recovered
         return Observable.empty()
     }
 
     override fun deaths(): Observable<List<Country>> {
+        // TODO: death cases
         return Observable.empty()
     }
 
     override fun confirmed(): Observable<List<Country>> {
+        // TODO: Confirmed
         return Observable.empty()
     }
 
     override fun fullStats(): Observable<List<Country>> {
-        // TODO: 4/12/21
+        // TODO: Full state
         return Observable.empty()
     }
 

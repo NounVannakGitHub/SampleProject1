@@ -7,6 +7,8 @@ data class Continent (
     var updated: Long = 0,
     @SerializedName("cases")
     var cases: Int = 0,
+    @SerializedName("deaths")
+    var deaths: Int = 0,
     @SerializedName("todayCases")
     var todayCases: Int = 0,
     @SerializedName("todayDeaths")

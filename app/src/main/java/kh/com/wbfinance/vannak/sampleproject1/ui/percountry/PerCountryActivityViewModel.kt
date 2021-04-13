@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import kh.com.wbfinance.vannak.sampleproject1.R
 import kh.com.wbfinance.vannak.sampleproject1.data.helper.Constant
 import kh.com.wbfinance.vannak.sampleproject1.data.mapper.CountryDataMapper
+import kh.com.wbfinance.vannak.sampleproject1.model.dao.Country
 import kh.com.wbfinance.vannak.sampleproject1.model.repo.Repository
 import kh.com.wbfinance.vannak.sampleproject1.ui.adapter.viewholders.TextItem
 import kh.com.wbfinance.vannak.sampleproject1.ui.base.BaseViewItem
@@ -36,8 +37,12 @@ class PerCountryActivityViewModel(
                 .map {
                     with(it){
                         val list = mutableListOf<BaseViewItem>()
-                        list.add(TextItem(R.string.case_per_province_chart))
-                        list.add(CountryDataMapper.transformToCountry(data))
+
+                        with (data){
+                            var countries: List<Country?> = listOf(data)
+                            list.add(CountryDataMapper.transformIntoCountryProvinceGraph(countries))
+                        }
+
                         list.toList()
                     }
                 }
