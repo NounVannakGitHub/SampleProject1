@@ -18,6 +18,7 @@ import kh.com.wbfinance.vannak.sampleproject1.model.dao.CovidOverview
 import kh.com.wbfinance.vannak.sampleproject1.model.repo.Repository
 import kh.com.wbfinance.vannak.sampleproject1.ui.adapter.viewholders.ErrorStateItem
 import kh.com.wbfinance.vannak.sampleproject1.ui.adapter.viewholders.LoadingStateItem
+import kh.com.wbfinance.vannak.sampleproject1.ui.adapter.viewholders.PinnedItem
 import kh.com.wbfinance.vannak.sampleproject1.ui.adapter.viewholders.TextItem
 import kh.com.wbfinance.vannak.sampleproject1.ui.base.BaseViewItem
 import kh.com.wbfinance.vannak.sampleproject1.ui.base.BaseViewModel
@@ -95,6 +96,17 @@ class DashboardViewModel(
                 /*
                 * Favorite Country
                 * */
+                val pinRegion = appRepository.getCachePinnedRegion()
+                if(pinRegion != null){
+                    items.add(TextItem(R.string.pin_location))
+                    items.add(PinnedItem(
+                        confirmed = pinRegion?.cases,
+                        recovered = pinRegion?.recovered,
+                        deaths = pinRegion?.deaths,
+                        locationName = pinRegion?.country?: "No Country",
+                        lastUpdate = pinRegion?.updated ?: 0
+                    ))
+                }
 
                 /*
                 * Asean Zone Covid-19 data

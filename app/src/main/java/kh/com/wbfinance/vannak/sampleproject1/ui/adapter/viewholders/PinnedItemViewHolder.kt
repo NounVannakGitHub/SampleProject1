@@ -12,7 +12,7 @@ data class PinnedItem(
     val recovered: Int? = null,
     val deaths: Int? = null,
     val locationName: String,
-    val lastUpdate: Long
+    val lastUpdate: Long = 0
 ) : BaseViewItem
 
 class PinnedItemViewHolder(itemView: View) : RecyclerViewHolder<PinnedItem>(itemView) {

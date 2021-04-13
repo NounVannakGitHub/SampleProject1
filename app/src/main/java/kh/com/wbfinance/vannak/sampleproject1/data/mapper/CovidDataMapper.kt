@@ -67,6 +67,7 @@ object CovidDetailDataMapper {
             response.countryInfo.long,
             response.country,
             response.continent,
+            response.countryInfo,
             caseType
         )
     }.orEmpty()
@@ -91,18 +92,3 @@ object CovidDataMapper{
         testsPerOneMillion = covidDetail.testsPerOneMillion
     )
 }
-
-//"updated": 1587140875474,
-//"country": "Italy",
-//"countryInfo": {
-//"cases": 168941,
-//"todayCases": 3786,
-//"deaths": 22170,
-//"todayDeaths": 525,
-//"recovered": 40164,
-//"active": 106607,
-//"critical": 2936,
-//"casesPerOneMillion": 2794,
-//"deathsPerOneMillion": 367,
-//"tests": 1178403,
-//"testsPerOneMillion": 19490

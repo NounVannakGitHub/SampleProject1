@@ -46,6 +46,7 @@
     <string name="check_update">Check for update</string>
     <string name="update_url" translatable="false">https://drive.google.com/open?id=1MaO9mIKWCFWSK2lFtEfKge1z8XDesi8n</string>
     <string name="day_on">(Day #%1$s)</string>
+    <string name="pin_location">You\'re Pin Location</string>
 
     <!-- API KEY -->
     <string name="MAP_API_KEY" translatable="false">AIzaSyALi3weKClqYoXBQz4OalJXfd_uFTDWNw4</string>

@@ -96,7 +96,7 @@ open class CovidRepo constructor(
         }
     }
 
-    override fun getCachePinnedRegion(): Country? = cache.getCountry("")
+    override fun getCachePinnedRegion(): Country? = cache.getPinCountry()
     override fun getCacheDaily(): List<CovidDaily> {
         // TODO: get cache daily
         return listOf()
@@ -128,8 +128,17 @@ open class CovidRepo constructor(
     }
 
     override fun fullStats(): Observable<List<Country>> {
-        // TODO: Full state
-        return Observable.empty()
+        val cacheFullStates = cache.getCountries()
+        val localObservable = if(cacheFullStates != null) Observable.just(cacheFullStates) else Observable.empty()
+        val removeObservable = api.allCountries().flatMap {
+                cache.setCountries(it)
+                Observable.just(it)
+            }
+            .onErrorResumeNext{t: Throwable ->
+                return@onErrorResumeNext if (cacheFullStates != null) Observable.just(cacheFullStates)
+                else Observable.error(t)
+            }
+        return Observable.concatArrayEager(localObservable,removeObservable)
     }
 
     override fun overview(): Observable<BaseResult<CovidOverview>> {

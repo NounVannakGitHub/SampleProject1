@@ -39,7 +39,7 @@ class PerCountryActivityViewModel(
                         val list = mutableListOf<BaseViewItem>()
 
                         with (data){
-                            var countries: List<Country?> = listOf(data)
+                            var countries: List<Country>? = listOfNotNull(data)
                             list.add(CountryDataMapper.transformIntoCountryProvinceGraph(countries))
                         }
 

@@ -22,6 +22,7 @@ object CacheKey {
     const val OVERVIEW = "cache_statistics"
     const val CONTINENT = "cache_continents"
     const val COUNTRY = "cache_country"
+    const val PIN_COUNTRY = "cache_pin_country"
 }
 
 

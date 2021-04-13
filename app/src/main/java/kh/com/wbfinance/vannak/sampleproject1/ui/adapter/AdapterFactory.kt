@@ -115,4 +115,13 @@ fun createAdapter(
             }
         }
     )
+    register(
+        layoutResource = R.layout.continent_item_view,
+        viewHolder = ::ContinentItemViewHolder,
+        onBindViewHolder = {continentItemViewHolder, _, continentItem ->
+            continentItemViewHolder.binding.root.setOnClickListener {
+                onItemClick?.invoke(continentItem, it)
+            }
+        }
+    )
 }

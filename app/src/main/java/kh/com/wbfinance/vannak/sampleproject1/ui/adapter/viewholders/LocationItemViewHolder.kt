@@ -1,11 +1,12 @@
 package kh.com.wbfinance.vannak.sampleproject1.ui.adapter.viewholders
 
 import android.view.View
-import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import kh.com.wbfinance.vannak.sampleproject1.R
 import kh.com.wbfinance.vannak.sampleproject1.data.helper.CaseType
 import kh.com.wbfinance.vannak.sampleproject1.data.helper.CaseTypes
 import kh.com.wbfinance.vannak.sampleproject1.databinding.ItemLocationBinding
+import kh.com.wbfinance.vannak.sampleproject1.model.dao.CountryInfo
 import kh.com.wbfinance.vannak.sampleproject1.ui.base.BaseViewItem
 import kh.com.wbfinance.vannak.sampleproject1.util.NumberUtils
 import kh.com.wbfinance.vannak.sampleproject1.util.ext.visible
@@ -21,14 +22,11 @@ data class LocationItem(
     val long: Double,
     val countryRegion: String,
     val provinceState: String?,
+    val countryInfo: CountryInfo?,
     @CaseTypes val caseType: Int,
     val isPinned: Boolean = false
 ) : BaseViewItem {
     fun compositeKey() = countryRegion + provinceState
-}
-
-class testLocationItemViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-
 }
 
 class LocationItemViewHolder(itemView: View) : RecyclerViewHolder<LocationItem>(itemView) {
@@ -59,6 +57,7 @@ class LocationItemViewHolder(itemView: View) : RecyclerViewHolder<LocationItem>(
                 R.string.death_case_count,
                 NumberUtils.numberFormat(item.deaths)
             )
+            Glide.with(itemView.context).load(item.countryInfo?.flag).error(R.drawable.ic_location).into(imgIcon)
 
             when (item.caseType) {
                 CaseType.CONFIRMED -> txtData.visible()

@@ -30,4 +30,8 @@ class CovidPref {
     fun setCountry(country: Country) = Hawk.put(country.country,country)
 
     fun getCountry(country: String): Country? = Hawk.get(country, null)
+
+    fun setPinCountry(country: Country?) = Hawk.put(CacheKey.PIN_COUNTRY,country)
+
+    fun getPinCountry(): Country? = Hawk.get(CacheKey.PIN_COUNTRY,null)
 }
